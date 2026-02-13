@@ -1,0 +1,19 @@
+START
+    INPUT Number
+
+    IF Number < 0 THEN
+        OUTPUT "Error: Please enter a non-negative integer."
+    
+    ELSE IF Number == 0 OR Number == 1 THEN
+        Result = 1
+        OUTPUT "The factorial of " + Number + " is: " + Result
+    
+    ELSE
+        Result = 1
+        FOR i FROM 1 TO Number
+            Result = Result * i
+        END FOR
+        
+        OUTPUT "The factorial of " + Number + " is: " + Result
+    END IF
+END
