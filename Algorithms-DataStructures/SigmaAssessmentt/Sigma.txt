@@ -1,0 +1,16 @@
+START
+    INPUT Number
+
+    IF Number < 1 THEN
+        OUTPUT "Error: Please enter a positive integer."
+    
+    ELSE
+        Sum = 0
+        
+        FOR i FROM 1 TO Number
+            Sum = Sum + i
+        END FOR
+        
+        OUTPUT "The sum of all integers from 1 to " + Number + " is: " + Sum
+    END IF
+END
