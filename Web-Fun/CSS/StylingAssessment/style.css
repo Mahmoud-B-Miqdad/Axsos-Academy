@@ -1,0 +1,35 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+}
+
+.main-title {
+    background-color: #000000;
+    color: #FFFFFF;        
+    padding: 10px;
+    margin-bottom: 5px;
+}
+
+.main-title span {
+    color: #00FFFF;          
+}
+
+.sub-title {
+    background-color: #6a3d9a; 
+    color: #FFFFFF;
+    text-align: center;     
+    font-style: italic;    
+    padding: 10px;
+    margin-bottom: 5px;
+}
+
+.contact-section {
+    background-color: #a6cee3; 
+    text-align: right;   
+    padding: 10px;
+}
+
+.contact-section a {
+    color: #1f78b4;       
+    text-decoration: underline;  
+}
