@@ -1,8 +1,8 @@
 START
-    READ Length
-    READ Width
+    INPUT Length
+    INPUT Width
 
     Area = Length * Width
 
-    PRINT "The area of the rectangle is: " + Area
+    OUTPUT "The area of the rectangle is: " + Area
 END

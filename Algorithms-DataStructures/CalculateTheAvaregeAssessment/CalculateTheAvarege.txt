@@ -1,11 +1,10 @@
 START
-    READ Number1
-    READ Number2
-    READ Number3
+    INPUT Number1
+    INPUT Number2
+    INPUT Number3
 
     Sum = Number1 + Number2 + Number3
-
     Average = Sum / 3
 
-    PRINT "The average is " + Average
+    OUTPUT "The average is " + Average
 END
