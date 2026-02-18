@@ -41,6 +41,11 @@ body {
     box-shadow: 4px 4px 0px 0px #000; 
 }
 
+button {
+    display: block; 
+    margin-bottom: 20px; 
+}
+
 button:hover {
     opacity: 0.8;
     transform: scale(1.05);
