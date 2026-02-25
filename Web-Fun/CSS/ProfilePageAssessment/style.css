@@ -1,0 +1,140 @@
+:root {
+    --primary-dark: #333333;
+    --accent-cyan: #17a2b8;
+    --bg-light: #f4f4f4;
+    --white: #ffffff;
+    --border-color: #dee2e6;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.nav {
+    background-color: #000;
+    color: white;
+    padding: 15px 0;
+    margin-bottom: 20px;
+}
+
+.nav-content {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    flex-grow: 1;
+}
+
+.nav-links a {
+    color: #ccc;
+    text-decoration: none;
+}
+
+.nav-links a.active {
+    color: white;
+    font-weight: bold;
+}
+
+.btn-logout {
+    background-color: var(--accent-cyan);
+    color: white;
+    border: none;
+    padding: 8px 20px;
+    cursor: pointer;
+}
+
+.main-layout {
+    display: flex;
+    gap: 20px;
+}
+
+.col-left { flex: 2; }
+.col-right { flex: 1; }
+
+.card {
+    background: var(--white);
+    border: 1px solid var(--border-color);
+    margin-bottom: 20px;
+}
+
+.card-header {
+    padding: 15px;
+    font-weight: bold;
+}
+
+.dark-bg { background-color: var(--primary-dark); color: white; }
+.cyan-bg { background-color: var(--accent-cyan); height: 120px; }
+
+.card-body { padding: 20px; }
+
+.user-card { position: relative; text-align: left; }
+.user-info { padding: 60px 20px 20px 20px; }
+.user-img {
+    position: absolute;
+    top: 60px;
+    left: 20px;
+    border-radius: 50%;
+    border: 5px solid white;
+    
+    width: 100px;
+    height: 100px;      
+    object-fit: cover; 
+}
+
+.location { display: flex; align-items: center; gap: 5px; margin: 10px 0; }
+.edit-link { color: var(--accent-cyan); text-decoration: none; font-size: 0.9em; }
+.edit-link:hover { text-decoration: underline; }
+
+.list { list-style: none; padding: 10px; }
+.list-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+}
+
+.user-row { display: flex; align-items: center; gap: 10px; }
+.avatar {
+    border-radius: 50%;
+    
+    width: 40px;
+    height: 40px;     
+    object-fit: cover; 
+}
+
+.badge {
+    background: #666;
+    padding: 2px 8px;
+    border-radius: 50%;
+    font-size: 0.8em;
+}
+
+.btn-circle {
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+    background: #ddd;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 25px;
+    cursor: pointer;
+    font-size: 0.7em;
+}
+
+.card-footer {
+    padding: 10px;
+    border-top: 1px solid var(--border-color);
+}
