@@ -1,5 +1,6 @@
 .container {
-    width: 900px;
+    width: 95%; 
+    max-width: 900px; 
     margin: 20px auto;
     background-color: #f5f5f5;
     padding: 20px;
@@ -13,15 +14,19 @@ h1 {
 }
 
 .row {
-    display: flex;       
+    display: flex;     
+    flex-wrap: wrap;  
     padding: 20px;
     margin-bottom: 20px;
 }
 
 img.octocat {
-    height: 200px;        
+    max-width: 100%;
+    height: auto; 
+    max-height: 200px; 
     background-color: white;
-    padding: 10px;        
+    padding: 10px;
+    margin: 10px; 
 }
 
 
