@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Dojonary Exercise</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="nav-content">
+            <h1>Dojonary</h1>
+            <input type="text" placeholder="Search" class="search-bar">
+            <button class="login-btn" onclick="loginLogout(this)">Login</button>
+        </div>
+    </nav>
+
+    <main class="container">
+        
+        <div class="definitions-column">
+            
+            <div class="card">
+                <div class="card-sidebar">
+                    <h2 class="term">ninja</h2>
+                    <p class="type">noun</p>
+                    <p class="plural">Plural: ninjas</p>
+                    <button class="like-btn" onclick="alert('Ninja was liked')">13 likes</button>
+                </div>
+                <div class="card-main">
+                    <p>A practitioner skilled in the <a href="#">Japanese</a> art of <a href="#">ninjutsu</a></p>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-sidebar">
+                    <h2 class="term">ninja</h2>
+                    <p class="type">noun</p>
+                    <p class="plural">Plural: ninjas</p>
+                    <button class="like-btn" onclick="alert('Ninja was liked')">37 likes</button>
+                </div>
+                <div class="card-main">
+                    <p>A <a href="#">programmer</a> who breaks down problems with <a href="#">zen</a>-like focus</p>
+                </div>
+            </div>
+
+        </div>
+
+        <aside class="info-column">
+            <div class="info-box">
+                <h2>Dojonary is defined by YOU</h2>
+                <button class="add-btn" onclick="removeButton(this)">Add Definition</button>
+            </div>
+        </aside>
+
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
