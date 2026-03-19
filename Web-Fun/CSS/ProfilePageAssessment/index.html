@@ -24,12 +24,12 @@
             <section class="card user-card">
                 <div class="card-header cyan-bg"></div>
                 <div class="user-info">
-                    <img src="./imgs/Mahmoud Miqdad.jpg" 
+                    <img id="user-img" src="./imgs/Mahmoud Miqdad.jpg" 
                     alt="Mahmoud Miqdad Photo" class="user-img">
-                    <h1>Mahmoud Miqdad</h1>
+                    <h1 id="user-name">Mahmoud Miqdad</h1>
                     <div class="location">
                         <img src="./imgs/location-icon.png" width="15">
-                        <span>Gaza Strip</span>
+                        <span id="user-city">Gaza Strip</span>
                     </div>
                     <p>Developer | Engineer | Problem Solver<br>Master of shadows and the Internet!</p>
                     <a href="#" class="edit-link">⚙ edit profile</a>
@@ -50,7 +50,7 @@
             
             <section class="card">
                 <div class="card-header dark-bg">
-                    <span class="badge">2</span> Connection Requests
+                    <span class="badge" id="request-count">2</span> Connection Requests
                 </div>
                 <ul class="list">
                     <li class="list-item">
@@ -80,7 +80,7 @@
 
             <section class="card">
                 <div class="card-header dark-bg">
-                    <span class="badge">500+</span> Your Connections
+                    <span class="badge" id="connection-count">500+</span> Your Connections
                 </div>
                 <ul class="list">
                     <li class="list-item">
@@ -119,5 +119,7 @@
             </section>
         </aside>
     </main>
+
+        <script src="script.js"></script>
 </body>
 </html>
