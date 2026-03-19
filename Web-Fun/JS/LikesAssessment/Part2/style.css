@@ -1,0 +1,83 @@
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #ffffff;
+}
+
+.navbar {
+    background-color: #000;
+    color: white;
+    padding: 3px 10%;
+    margin-bottom: 20px;
+}
+
+.main-container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h2 { text-align: center; margin-bottom: 30px; }
+
+.feed-layout {
+    display: flex;
+    gap: 30px;
+}
+
+.user-sidebar {
+    flex: 1;
+}
+
+.user-info {
+    border: 2px solid #000;
+    padding: 20px;
+    text-align: center;
+}
+
+.avatar {
+    width: 100px;
+    height: 100px;
+    display: block;
+    margin: 0 auto 10px;
+}
+
+.user-info a { color: blue; font-size: 0.8rem; }
+
+.posts-list {
+    flex: 2;
+}
+
+.post-card {
+    border: 2px solid #000;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.post-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.likes-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.like-count { font-weight: bold; }
+
+button {
+    background-color: #ffcc00;
+    border: 2px solid #000;
+    padding: 5px 15px;
+    cursor: pointer;
+    font-weight: bold;
+    box-shadow: 3px 3px 0px #000;
+}
+
+button:active {
+    transform: translate(2px, 2px);
+    box-shadow: none;
+}
