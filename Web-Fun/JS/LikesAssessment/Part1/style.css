@@ -1,0 +1,51 @@
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f0f0;
+}
+
+.user-card {
+    border: 2px solid black;
+    padding: 20px;
+    width: 400px;
+    background-color: white;
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.card-header h2 {
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+.likes-section {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+button {
+    background-color: #ffcc00; 
+    border: 2px solid black;
+    padding: 5px 15px;
+    cursor: pointer;
+    font-weight: bold;
+    box-shadow: 2px 2px 0px black;
+}
+
+button:active {
+    box-shadow: none;
+    transform: translate(2px, 2px);
+}
+
+.filler-text {
+    margin: 10px 0 0 0;
+}
