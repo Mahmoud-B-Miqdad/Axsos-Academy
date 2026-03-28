@@ -1,5 +1,6 @@
-function loadingAlert() {
-    alert("Loading weather report...");
+function loadingAlert(city) {
+
+    alert(city.innerText + " Loading weather report...");
 }
 
 function acceptCookies() {
