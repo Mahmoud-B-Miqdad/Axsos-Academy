@@ -10,7 +10,7 @@
     <header>
         <nav class="nav-content">
             <div class="logo">
-                <img src="/assests/logo.png" alt="logo Image">
+                <img src="./assests/logo.png" alt="logo Image">
                 <h1>GrowSync</h1>
             </div>
             <ul class="nav-links">
@@ -29,7 +29,7 @@
                 onmouseout="restoreOrigin(this)">
                 Get Started -></button>
             </div>
-            <img src="/assests/hero-img.png" alt="header Image">
+            <img src="./assests/hero-img.png" alt="header Image">
         </div>
     </header>
     <div class="hr-line"></div>
@@ -37,24 +37,61 @@
     <section>
         <div class="about-section">
             <div class="about-info">
-                <h3>Who we are</h3>
-                <p>We are a forward-thinking company dedicated to
-                     providing innovative solutions that fuel business
-                      growth. With a focus on modern technologies and
-                       strategic insights, we help businesses 
-                       streamline their operations, enhance customer 
-                       experiences, and scale efficiently. Whether 
-                       you're looking to improve your digital presence,
-                        optimize processes, or drive new revenue streams
+                <h3 id="about-title">Who we are</h3>
+                <p id="about-parag">We are a forward-thinking company 
+                    dedicated toproviding innovative solutions that
+                    fuel business growth. 
+                    With a focus on modern technologies and
+                    strategic insights, we help businesses 
+                    streamline their operations, enhance customer 
+                    experiences, and scale efficiently. Whether 
+                    you're looking to improve your digital presence,
+                    optimize processes, or drive new revenue streams
                 </p>
                 <button id="about-btn">Make A Change</button>
             </div>
-            <img class="about-img" src="/assests/about.jpg" alt="info Image">
+            <img class="about-img" src="./assests/about.jpg" alt="info Image">
         </div>
     </section>
     <div class="hr-line"></div>
 
+        <section class="services">
+        <div class="services-header">
+            <h4>Our Services</h3>
+            <button id="add-btn" onclick="addService(this)">Add Service</button>
+        </div>
 
+        <div class="card-container">
+            <div class="card">
+                <img src="./assests/values-2.png" alt="rocket card Image">
+                <p>
+                    We provide modern,technology-driven solutions 
+                    tailored to help you adapt, compete, and thrive 
+                    in an ever-evolving market.
+                </p>
+            </div>
+
+            <div class="card">
+                <img src="./assests/values-1.png" alt="rocket card Image">
+                <p>
+                    Whether you're a startup or an established 
+                    enterprise, we focus on 
+                    <span class="red-text">scalable and flexible tools</span>
+                    that support growth at every stage.
+                </p>
+            </div>
+
+            <div class="card">
+                <img src="./assests/values-3.png" alt="rocket card Image">
+                <p>
+                    Our services are designed to meet the unique
+                    challenges of today while positioning you for
+                    tomorrow's opportunities.
+                </p>
+            </div>
+        </div>
+
+    </section>
     <script src="script.js"></script>
 </body>
 </html>

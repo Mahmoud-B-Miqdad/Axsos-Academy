@@ -16,10 +16,16 @@ header{
 }
 
 .nav-content{
+    position: fixed;
+    width: 95%;
     display: flex;
+    top: 0%;
+    background-color: white;
+    border-bottom: 2px solid gray;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 0px 0px 80px;
+    padding: 20px 0px 15px 80px;
+    z-index: 2;
 }
 
 .logo{
@@ -64,6 +70,7 @@ header{
 
 .header-content img{
     width: 500px;
+    margin-top: 150px;
     object-fit: cover;
     max-width: 100%;
 }
@@ -72,26 +79,29 @@ header{
     display: flex;
     flex-direction: column;
     gap: 20px;
-    max-width: 200px;
+    width: 300px;
+    flex-wrap: wrap;
 }
 
 .intro-content h2{
+    margin-top: 60px;
     color: #253078;
     font-size: clamp(1.5rem, 2.5vw, 2.5rem);
 }
 
 .intro-content p{
-    max-width: 400px;
     font-size: clamp(1rem, 2vw, 1.5rem);
 }
 
 button{
-    width: 150px;
+    width: 180px;
     padding: 10px;
-    border: none;
+    border: 2px solid #000;
+    border-radius: 10px;
     background-color: #284bf9;
     color: white;
     font-size: 16px;
+    font-weight: bold;
     cursor: pointer;
     text-align: center;
 }
@@ -132,4 +142,57 @@ div.hr-line {
     width: 550px;
     object-fit: cover;
     max-width: 100%;
+}
+
+.services{
+    max-width: 1200px;
+    width: 100%;
+    text-align: center;
+    margin: auto;
+    margin-top: 100px;
+    margin-bottom: 100px;
+}
+
+.services-header{
+    display: flex;
+    gap: 25%;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 50px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.services-header h4{
+    color: #253078;
+    font-size: clamp(1.5rem, 3vw, 2.5rem);
+    font-family:Georgia, 'Times New Roman', Times, serif;
+}
+
+.card-container{
+    display: flex;
+    gap: 50px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.card{
+    width: 350px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    overflow: hidden;
+    background-color: white;
+    transition: transform 0.3s ease;
+    padding: 50px;
+    text-align: start;
+}
+
+.card img{
+    width: 100%;
+    object-fit: cover;
+    margin-bottom: 20px;
+}
+
+.red-text{
+    color:red;
 }
