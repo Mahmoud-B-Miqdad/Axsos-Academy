@@ -25,6 +25,14 @@ This assignment focuses on the fundamental concepts of loops in Python. I implem
 
 ---
 
+## 🛠️ Key Concepts
+* **Python Loops:** `for` loops and `range()` function.
+* **Conditionals:** `if`, `elif`, `else` statements.
+* **Math Logic:** Modulo operator `%` for divisibility checks.
+
+---
+
+
 ## 🚀 How to Run
 1. Ensure [Python](https://www.python.org/) is installed on your machine.
 2. Open your terminal or command prompt.
