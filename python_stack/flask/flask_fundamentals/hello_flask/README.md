@@ -1,33 +1,33 @@
 <div align="center">
 
-# 🌐 Python Web: Intro to Flask
-**Building Your First Web Server**
+# 🌐 Python Web: Flask Routing & Parameters
+**Mastering Dynamic URL Handling**
 
 ![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
-![Flask](https://img.shields.io/badge/Focus-Flask_Web_Framework-black?style=for-the-badge)
+![Flask](https://img.shields.io/badge/Focus-Flask_Routing-black?style=for-the-badge)
 
 </div>
 
 ---
 
 ## 📝 Description
-This assignment introduces the basics of server-side web development using the **Flask** micro-framework. I created a simple application that defines a route and serves a response, providing the fundamental understanding of how web requests and responses work in a Python environment.
+This assignment builds upon the basic Flask server by implementing **Dynamic Routing**. I learned how to capture variables directly from the URL (like names and IDs) and use them within my Python functions. This is a fundamental concept for building RESTful APIs and personalized web experiences.
 
 
 
 ---
 
 ## 🎯 Key Concepts
-* **Flask Application Object:** The `app` instance is the central object that handles all requests and configurations.
-* **Routing:** Using the `@app.route('/')` decorator to map a URL pattern to a specific Python function.
-* **Development Mode:** Using `debug=True` to enable hot-reloading and helpful error messages, which is essential during development.
-* **The Entry Point:** The `if __name__ == "__main__":` block ensures the server only runs if the file is executed directly.
+* **Dynamic Route Parameters:** Using `<variable>` syntax in `@app.route()` to define placeholders in the URL.
+* **Function Arguments:** Passing those URL placeholders directly as arguments to the corresponding Python view functions.
+* **Multiple Parameters:** Handling more than one dynamic value in a single route (e.g., `/users/<username>/<id>`).
+* **Route Mapping:** Managing multiple endpoints (`/`, `/success`, `/hello/<name>`, `/users/<username>/<id>`) within a single application.
 
 ---
 
 ## 🛠️ Implementation Highlights
-* **Web Server Interaction:** The code demonstrates the cycle of a browser making a request to the root URL and the server returning a string response.
-* **Decorators:** Learning how Python decorators modify the behavior of functions (linking them to URLs).
+* **Flexible URLs:** The server can now respond dynamically to different inputs without needing hardcoded routes for every possibility.
+* **Server-Side Printing:** Using `print()` inside routes to log received data to the console for easier debugging during the development phase.
 
 ---
 
@@ -42,4 +42,9 @@ This assignment introduces the basics of server-side web development using the *
    python server.py
     ```
 
-3. Open your browser and navigate to http://127.0.0.1:5000/.
+3. Test the different routes in your browser:
+
+- http://127.0.0.1:5000/
+- http://127.0.0.1:5000/success
+- http://127.0.0.1:5000/hello/Mahmoud
+- http://127.0.0.1:5000/users/Miqdad/1
