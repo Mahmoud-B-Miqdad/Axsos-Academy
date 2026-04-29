@@ -29,7 +29,7 @@ def reset():
     session['counter'] = 0
     return redirect('/')
 
-@app.route('/destroy_session')
+@app.route('/destroy_session', methods=['POST'])
 def destroy_session():
     session.clear()
     return redirect('/')
