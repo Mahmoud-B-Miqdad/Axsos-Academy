@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Display default time</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+
+    <div class="time-box">
+        <div class="title-box">The current time and date:</div>
+        <h1>{{ date_string }}</h1>
+        <h1>{{ time_string }}</h1>
+    </div>
+
+</body>
+</html>
