@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dojo Survey - Form</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light p-5">
+
+    <div class="container bg-white p-4 rounded shadow" style="max-width: 600px;">
+        <h2 class="mb-4 text-center text-primary">Dojo Survey</h2>
+        
+        <form action="/result" method="post">
+            {% csrf_token %}
+            
+            <div class="mb-3">
+                <label class="form-label">Your Name:</label>
+                <input type="text" name="name" class="form-control" required>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Dojo Location:</label>
+                <select name="location" class="form-select">
+                    <option value="San Jose">San Jose</option>
+                    <option value="Cairo">Cairo</option>
+                    <option value="Ramallah">Ramallah</option>
+                    <option value="Online">Online</option>
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Favorite Language:</label>
+                <select name="language" class="form-select">
+                    <option value="Python">Python</option>
+                    <option value="JavaScript">JavaScript</option>
+                    <option value="Java">Java</option>
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label d-block">Preferred Bootcamp Type:</label>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="bootcamp_type" value="Full-Time" checked>
+                    <label class="form-check-label">Full-Time</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="bootcamp_type" value="Part-Time">
+                    <label class="form-check-label">Part-Time</label>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label d-block">Interests (Select multiple):</label>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="interests" value="Web Development">
+                    <label class="form-check-label">Web Development</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="interests" value="Data Science">
+                    <label class="form-check-label">Data Science</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="interests" value="Cyber Security">
+                    <label class="form-check-label">Cyber Security</label>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Comment (optional):</label>
+                <textarea name="comment" class="form-control" rows="3"></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100">Submit</button>
+        </form>
+    </div>
+
+</body>
+</html>
