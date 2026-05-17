@@ -7,5 +7,4 @@ urlpatterns = [
     path('custom_increment', views.custom_increment),
     path('destroy_session', views.destroy_session),
     path('reset', views.reset),
-
 ]
