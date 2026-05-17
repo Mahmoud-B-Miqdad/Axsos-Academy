@@ -13,7 +13,6 @@
     <div class="{{ request.session.color }} text-white p-5 mx-auto" style="width: 300px;">
         <h2>{{ request.session.message }}</h2>
         {% if request.session.game_over %}
-        {% csrf_token %}
         <a href="/reset" class="btn btn-light">Play again!</a>
         {% endif %}
     </div>
