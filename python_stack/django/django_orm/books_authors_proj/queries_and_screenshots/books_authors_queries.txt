@@ -1,0 +1,78 @@
+from books_authors_app.models import Book, Author
+
+# 1
+b1 = Book.objects.create(title="C Sharp", desc="C# Programming Language")
+b2 = Book.objects.create(title="Java", desc="Java Programming Language")
+b3 = Book.objects.create(title="Python", desc="Python Programming Language")
+b4 = Book.objects.create(title="PHP", desc="PHP Programming Language")
+b5 = Book.objects.create(title="Ruby", desc="Ruby Programming Language")
+
+# 2
+a1 = Author.objects.create(first_name="Jane", last_name="Austen")
+a2 = Author.objects.create(first_name="Emily", last_name="Dickinson")
+a3 = Author.objects.create(first_name="Fyodor", last_name="Dostoevsky")
+a4 = Author.objects.create(first_name="William", last_name="Shakespeare")
+a5 = Author.objects.create(first_name="Lao", last_name="Tzu")
+
+# 3
+book_csharp = Book.objects.get(title="C Sharp")
+book_csharp.title = "C#"
+book_csharp.save()
+
+# 4
+author_4 = Author.objects.get(id=4)
+author_4.first_name = "Bill"
+author_4.save()
+
+# 5
+author_1 = Author.objects.get(id=1)
+book_1 = Book.objects.get(id=1)
+book_2 = Book.objects.get(id=2)
+
+author_1.books.add(book_1, book_2)
+
+# 6
+author_2 = Author.objects.get(id=2)
+book_3 = Book.objects.get(id=3)
+
+author_2.books.add(Book.objects.get(id=1), Book.objects.get(id=2), book_3)
+
+# 7
+author_3 = Author.objects.get(id=3)
+book_4 = Book.objects.get(id=4)
+
+author_3.books.add(Book.objects.get(id=1), Book.objects.get(id=2), Book.objects.get(id=3), book_4)
+
+# 8
+author_4 = Author.objects.get(id=4)
+all_books = Book.objects.all()
+
+for book in all_books:
+    author_4.books.add(book)
+
+# 9
+book_3_authors = Book.objects.get(id=3).authors.all()
+# لعرضهم في الـ shell:
+print(book_3_authors)
+
+# 10
+book_3 = Book.objects.get(id=3)
+author_1 = Author.objects.get(id=1)
+
+book_3.authors.remove(author_1)
+
+# 11
+book_2 = Book.objects.get(id=2)
+author_5 = Author.objects.get(id=5)
+
+book_2.authors.add(author_5)
+
+# 12
+author_3_books = Author.objects.get(id=3).books.all()
+# لعرضهم في الـ shell:
+print(author_3_books)
+
+# 13
+book_5_authors = Book.objects.get(id=5).authors.all()
+# لعرضهم في الـ shell:
+print(book_5_authors)
