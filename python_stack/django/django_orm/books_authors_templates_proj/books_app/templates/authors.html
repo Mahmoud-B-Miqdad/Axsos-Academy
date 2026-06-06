@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Authors</title>
+    <style>
+        body { font-family: sans-serif; display: flex; gap: 50px; padding: 20px; }
+        form { display: flex; flex-direction: column; width: 250px; gap: 10px; }
+        table { border-collapse: collapse; width: 400px; }
+        th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
+    </style>
+</head>
+<body>
+    <div>
+        <h2>Add an Author</h2>
+        <form action="/authors/create" method="POST">
+            {% csrf_token %}
+            <label>First Name</label>
+            <input type="text" name="first_name" required>
+            <label>Last Name</label>
+            <input type="text" name="last_name" required>
+            <label>Notes</label>
+            <textarea name="notes" rows="3"></textarea>
+            <button type="submit">Add</button>
+        </form>
+        <p><a href="/">Go to Books Page</a></p>
+    </div>
+    <div>
+        <h2>Authors Table</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for author in all_authors %}
+                <tr>
+                    <td>{{ author.id }}</td>
+                    <td>{{ author.first_name }} {{ author.last_name }}</td>
+                    <td><a href="/authors/{{ author.id }}">View</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
