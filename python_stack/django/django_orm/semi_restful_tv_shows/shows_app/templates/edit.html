@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Show {{ show.id }}</title>
+</head>
+<body>
+    <div style="width: 400px;">
+        <h2 style="display: inline-block;">Edit Show {{ show.id }}</h2>
+        <a href="/shows" style="float: right; margin-top: 25px;">Go Back</a>
+        
+        <form action="/shows/{{ show.id }}/update" method="POST">
+            {% csrf_token %}
+            <p>
+                <label>Title</label><br>
+                <input type="text" name="title" value="{{ show.title }}" style="width: 100%;" required>
+            </p>
+            <p style="display: flex; gap: 20px;">
+                <span style="flex: 1;">
+                    <label>Network</label><br>
+                    <input type="text" name="network" value="{{ show.network }}" style="width: 100%;" required>
+                </span>
+                <span style="flex: 1;">
+                    <label>Release Date</label><br>
+                    <input type="date" name="release_date" value="{{ formatted_date }}" style="width: 100%;" required>
+                </span>
+            </p>
+            <p>
+                <label>Description</label><br>
+                <textarea name="desc" rows="5" style="width: 100%;" required>{"{{ show.desc }}"}</textarea>
+            </p>
+            <button type="submit">Update</button>
+        </form>
+        <br>
+        <a href="/shows/{{ show.id }}">Go to Show</a>
+    </div>
+</body>
+</html>

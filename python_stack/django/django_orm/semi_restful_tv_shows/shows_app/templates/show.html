@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ show.title }}</title>
+</head>
+<body>
+    <div style="width: 500px;">
+        <h1 style="display: inline-block;">TV Show {{ show.id }}</h1>
+        <a href="/shows" style="float: right; margin-top: 25px;">Go Back</a>
+        
+        <h2>Title: {{ show.title }}</h2>
+        <p><strong>Network:</strong> {{ show.network }}</p>
+        <p><strong>Release Date:</strong> {{ show.release_date }}</p>
+        <p><strong>Description:</strong> {{ show.desc }}</p>
+        
+        <hr>
+        <p style="font-size: 0.9em; color: #666;">Last Updated: {{ show.updated_at }}</p>
+        
+        <a href="/shows/{{ show.id }}/edit">Edit</a> | 
+        <a href="/shows/{{ show.id }}/destroy">Delete</a>
+    </div>
+</body>
+</html>
