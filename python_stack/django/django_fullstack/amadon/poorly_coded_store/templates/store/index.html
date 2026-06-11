@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amadon Store</title>
+    <!-- Bootstrap 5 for clean and basic styling -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light container py-5">
+    <h1 class="mb-4 text-primary">Amadon Store!</h1>
+    
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <table class="table table-striped table-hover align-middle">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Item</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for product in all_products %}
+                    <tr>
+                        <!-- Secure POST action route to /buy/ -->
+                        <form action="/buy/" method="post">
+                            {% csrf_token %}
+                            <!-- Secure fixation: Sending product_id instead of raw price -->
+                            <input type="hidden" name="product_id" value="{{ product.id }}">
+                            
+                            <td class="fw-bold">{{ product.description }}</td>
+                            <td>${{ product.price }}</td>
+                            <td>
+                                <select name="quantity" class="form-select form-select-sm" style="width: auto;">
+                                    <option value="1">1</option>              
+                                    <option value="2">2</option>              
+                                    <option value="3">3</option>              
+                                </select>
+                            </td>
+                            <td><input type="submit" value="Buy!" class="btn btn-success btn-sm"></td>
+                        </form>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
