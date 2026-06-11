@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Courses Dashboard</title>
+    <style>
+        .error { color: red; font-weight: bold; }
+        /* Custom Modal Styling for Sensei Bonus */
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); }
+        .modal-content { background: white; padding: 20px; width: 400px; margin: 100px auto; border: 1px solid #000; text-align: center; }
+        .btn-no { background: #ccc; padding: 10px; margin-right: 10px; cursor: pointer; }
+        .btn-yes { background: red; color: white; padding: 10px; cursor: pointer; }
+    </style>
+</head>
+<body>
+
+    <h2>Add a new course</h2>
+    {% if messages %}
+    <ul class="error">
+        {% for message in messages %}
+        <li>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+    <form action="/courses/create/" method="POST">
+        {% csrf_token %}
+        <p>Name: <input type="text" name="name"></p>
+        <p>Description: <textarea name="description"></textarea></p>
+        <button type="submit" style="background-color: green; color: white;">Add</button>
+    </form>
+
+    <h2>Courses</h2>
+    <table border="1" cellpadding="8" style="width: 80%; border-collapse: collapse;">
+        <thead>
+            <tr style="background-color: #eee;">
+                <th>Course Name</th>
+                <th>Description</th>
+                <th>Date Added</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for course in courses %}
+            <tr id="course-row-{{ course.id }}">
+                <td>{{ course.name }}</td>
+                <td>{{ course.desc_info.content }}</td>
+                <td>{{ course.created_at|date:"M jS Y g:i A" }}</td>
+                <td>
+                    <a href="/courses/{{ course.id }}/comments/">comments</a> | 
+                    <a href="#" onclick="openDeleteModal('{{ course.id }}', '{{ course.name }}', '{{ course.desc_info.content }}')">remove</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <div id="deleteModal" class="modal">
+        <div class="modal-content">
+            <h3>Are you sure you want to delete the following course?</h3>
+            <p><strong>Name:</strong> <span id="modal-course-name"></span></p>
+            <p><strong>Description:</strong> <span id="modal-course-desc"></span></p>
+            <br>
+            <button class="btn-no" onclick="closeModal()">No</button>
+            <button class="btn-yes" id="modal-confirm-btn">Yes! I want to delete this</button>
+        </div>
+    </div>
+
+    <script>
+        let currentCourseId = null;
+
+        function openDeleteModal(id, name, desc) {
+            currentCourseId = id;
+            document.getElementById('modal-course-name').innerText = name;
+            document.getElementById('modal-course-desc').innerText = desc;
+            document.getElementById('deleteModal').style.display = 'block';
+            
+            // Bind AJAX request to "Yes" button
+            document.getElementById('modal-confirm-btn').onclick = function() {
+                fetch(`/courses/${currentCourseId}/delete-ajax/`, {
+                    method: 'POST',
+                    headers: {
+                        'X-CSRFToken': '{{ csrf_token }}',
+                    }
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        // Dynamically remove row from DOM without refresh
+                        document.getElementById(`course-row-${currentCourseId}`).remove();
+                        closeModal();
+                    }
+                });
+            };
+        }
+
+        function closeModal() {
+            document.getElementById('deleteModal').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
