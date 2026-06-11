@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add a New Show</title>
+    <style>.error-msg { color: red; margin: 5px 0; font-weight: bold; }</style>
+</head>
+<body>
+    <a href="/shows">Go Back</a>
+    <h1>Add a New Show</h1>
+
+    <!-- Display Backend Messages -->
+    {% if messages %}
+    <ul class="error-msg">
+        {% for message in messages %}
+        <li>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+    <!-- AJAX Real-time Error Container -->
+    <div id="ajax-errors" class="error-msg"></div>
+
+    <form id="show-form" action="/shows/create/" method="POST">
+        {% csrf_token %}
+        <p>Title: <input type="text" name="title" id="title"></p>
+        <p>Network: <input type="text" name="network" id="network"></p>
+        <p>Release Date: <input type="date" name="release_date" id="release_date"></p>
+        <p>Description: <textarea name="description" id="description"></textarea></p>
+        <button type="submit" id="submit-btn">Create</button>
+    </form>
+
+    <script>
+        const fields = ['title', 'network', 'release_date', 'description'];
+        
+        fields.forEach(fieldId => {
+            document.getElementById(fieldId).addEventListener('input', function() {
+                const formData = new URLSearchParams(new FormData(document.getElementById('show-form'))).toString();
+                
+                // Live AJAX Request to check validity
+                fetch(`/shows/validate-ajax/?${formData}`)
+                .then(response => response.json())
+                .then(data => {
+                    const errorDiv = document.getElementById('ajax-errors');
+                    errorDiv.innerHTML = '';
+                    if (!data.valid) {
+                        for (let key in data.errors) {
+                            errorDiv.innerHTML += `<p>• ${data.errors[key]}</p>`;
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

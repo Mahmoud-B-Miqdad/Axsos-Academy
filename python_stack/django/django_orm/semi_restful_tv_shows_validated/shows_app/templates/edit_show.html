@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Show {{ show.id }}</title>
+    <style>.error-msg { color: red; margin: 5px 0; font-weight: bold; }</style>
+</head>
+<body>
+    <a href="/shows">Go Back</a>
+    <h1>Edit Show {{ show.id }}</h1>
+
+    {% if messages %}
+    <ul class="error-msg">
+        {% for message in messages %}
+        <li>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+    <div id="ajax-errors" class="error-msg"></div>
+
+    <form id="show-form" action="/shows/{{ show.id }}/update/" method="POST">
+        {% csrf_token %}
+        <p>Title: <input type="text" name="title" id="title" value="{{ show.title }}"></p>
+        <p>Network: <input type="text" name="network" id="network" value="{{ show.network }}"></p>
+        <p>Release Date: <input type="date" name="release_date" id="release_date" value="{{ show.release_date|date:'Y-m-d' }}"></p>
+        <p>Description: <textarea name="description" id="description">{{ show.description }}</textarea></p>
+        <button type="submit" id="submit-btn">Update</button>
+    </form>
+
+    <a href="/shows/{{ show.id }}/">Go to Show</a>
+
+    <script>
+        const fields = ['title', 'network', 'release_date', 'description'];
+        fields.forEach(fieldId => {
+            document.getElementById(fieldId).addEventListener('input', function() {
+                const formData = new URLSearchParams(new FormData(document.getElementById('show-form'))).toString();
+                
+                // Passing show_id and is_update=true to bypass uniqueness validation for this specific record
+                fetch(`/shows/validate-ajax/?${formData}&is_update=true&show_id={{ show.id }}`)
+                .then(response => response.json())
+                .then(data => {
+                    const errorDiv = document.getElementById('ajax-errors');
+                    errorDiv.innerHTML = '';
+                    if (!data.valid) {
+                        for (let key in data.errors) {
+                            errorDiv.innerHTML += `<p>• ${data.errors[key]}</p>`;
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
