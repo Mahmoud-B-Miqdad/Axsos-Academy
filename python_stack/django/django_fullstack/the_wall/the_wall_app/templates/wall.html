@@ -1,0 +1,77 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wall</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="{% static 'css/auth.css' %}">
+    <link rel="stylesheet" href="{% static 'css/wall.css' %}?v=1.0">
+</head>
+<body>
+
+    <div class="wall-nav">
+        <h2>Wall</h2>
+        <div>
+            <span style="margin-right: 15px; font-weight: 500;">Welcome, {{ user.first_name }}</span>
+            <a href="/logout" style="color: var(--brand-indigo); font-weight: 600; text-decoration: none;">Log Out</a>
+        </div>
+    </div>
+
+    <div class="wall-container">
+        {% if messages %}
+        <div class="messages-wrapper">
+            {% for message in messages %}
+            <div class="alert-banner {{ message.tags }}-banner">{{ message }}</div>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        <div class="post-box">
+            <h3 style="margin-bottom: 12px; font-size: 18px;">Post a Message</h3>
+            <form action="/wall/post-message" method="POST">
+                {% csrf_token %}
+                <textarea name="message_text" placeholder="What's on your mind?"></textarea>
+                <button type="submit" class="action-btn primary-btn" style="width: auto; padding: 10px 24px; float: right; margin-top: 0;">Post a Message</button>
+                <div style="clear: both;"></div>
+            </form>
+        </div>
+
+        {% for message in all_messages %}
+        <div class="message-card">
+            <div class="card-header">
+                <span><strong>{{ message.user.first_name }} {{ message.user.last_name }}</strong> - {{ message.created_at|date:"F jS Y" }}</span>
+                
+                {% if message.is_deletable %}
+                    <a href="/wall/delete-message/{{ message.id }}" class="delete-link" onclick="return confirm('Are you sure you want to delete this post?')">Delete</a>
+                {% endif %}
+            </div>
+            <p style="color: var(--font-primary); font-size: 15px; line-height: 1.5;">{{ message.message_text }}</p>
+
+            <div class="comments-section">
+                {% for comment in message.comments.all %}
+                <div class="comment-card">
+                    <div style="font-size: 12px; color: var(--font-secondary); margin-bottom: 4px;">
+                        <strong style="color: var(--font-primary);">{{ comment.user.first_name }} {{ comment.user.last_name }}</strong> - {{ comment.created_at|date:"F jS Y" }}
+                    </div>
+                    <p style="color: #374151;">{{ comment.comment_text }}</p>
+                </div>
+                {% endfor %}
+
+                <form action="/wall/post-comment" method="POST" class="comment-form">
+                    {% csrf_token %}
+                    <input type="hidden" name="message_id" value="{{ message.id }}">
+                    <input type="text" name="comment_text" placeholder="Write a comment..." required>
+                    <button type="submit" class="comment-btn">Post Comment</button>
+                </form>
+            </div>
+        </div>
+        {% empty %}
+        <p style="text-align: center; color: var(--font-secondary); margin-top: 40px;">No messages posted on the wall yet.</p>
+        {% endfor %}
+    </div>
+
+</body>
+</html>

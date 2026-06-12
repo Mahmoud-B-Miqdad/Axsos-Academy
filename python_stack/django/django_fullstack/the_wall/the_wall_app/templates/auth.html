@@ -1,0 +1,101 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Authentication Portal</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/auth.css' %}">
+</head>
+<body>
+
+    <div class="portal-container">
+        {% if messages %}
+        <div class="messages-wrapper" id="djangoMessages">
+            {% for message in messages %}
+            <div class="alert-banner {{ message.tags }}-banner">{{ message }}</div>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        <div class="card-wrapper">
+            <div class="auth-box sign-in-box">
+                <form action="/login" method="POST" id="loginForm">
+                    {% csrf_token %}
+                    <h2>Welcome Back</h2>
+                    <p class="helper-text">Please sign in to manage your account details.</p>
+                    
+                    <div class="field-control">
+                        <label for="login_email">Email Address</label>
+                        <input type="email" id="login_email" name="email" placeholder="example@domain.com">
+                        <span class="client-error-text"></span>
+                    </div>
+
+                    <div class="field-control">
+                        <label for="login_password">Password</label>
+                        <input type="password" id="login_password" name="password" placeholder="••••••••">
+                        <span class="client-error-text"></span>
+                    </div>
+
+                    <button type="submit" class="action-btn primary-btn">Sign In</button>
+                    <p class="view-switch-text">Don't have an account? <span id="switchToSignUp">Register here</span></p>
+                </form>
+            </div>
+
+            <div class="auth-box sign-up-box view-hidden">
+                <form action="/register" method="POST" id="registerForm">
+                    {% csrf_token %}
+                    <h2>Create Account</h2>
+                    <p class="helper-text">Sign up today and get started with our system.</p>
+
+                    <div class="flex-row">
+                        <div class="field-control">
+                            <label for="first_name">First Name</label>
+                            <input type="text" id="first_name" name="first_name" placeholder="John">
+                            <span class="client-error-text"></span>
+                        </div>
+                        <div class="field-control">
+                            <label for="last_name">Last Name</label>
+                            <input type="text" id="last_name" name="last_name" placeholder="Doe">
+                            <span class="client-error-text"></span>
+                        </div>
+                    </div>
+
+                    <div class="field-control">
+                        <label for="reg_email">Email Address</label>
+                        <input type="email" id="reg_email" name="email" placeholder="john.doe@domain.com">
+                        <span class="client-error-text"></span>
+                    </div>
+
+                    <div class="field-control">
+                        <label for="birthday">Date of Birth</label>
+                        <input type="date" id="birthday" name="birthday">
+                        <span class="client-error-text"></span>
+                    </div>
+
+                    <div class="flex-row">
+                        <div class="field-control">
+                            <label for="reg_password">Password</label>
+                            <input type="password" id="reg_password" name="password" placeholder="••••••••">
+                            <span class="client-error-text"></span>
+                        </div>
+                        <div class="field-control">
+                            <label for="confirm_password">Confirm Password</label>
+                            <input type="password" id="confirm_password" name="confirm_password" placeholder="••••••••">
+                            <span class="client-error-text"></span>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="action-btn secondary-btn">Register Account</button>
+                    <p class="view-switch-text">Already have an account? <span id="switchToSignIn">Sign in instead</span></p>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="{% static 'js/auth.js' %}"></script>
+</body>
+</html>
