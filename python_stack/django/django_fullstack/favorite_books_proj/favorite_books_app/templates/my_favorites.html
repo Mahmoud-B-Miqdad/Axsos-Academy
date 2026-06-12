@@ -1,0 +1,39 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Personal Library Stack</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/books.css' %}?v=1.0">
+</head>
+<body>
+
+    <div class="navbar">
+        <h2>Your Curated Reading Space</h2>
+        <div class="navbar-links">
+            <a href="/books">⬅ Return to General Dashboard</a>
+        </div>
+    </div>
+
+    <div class="main-layout-grid" style="justify-content: center;">
+        <div class="column-card right-panel" style="flex: 1; max-width: 750px;">
+            <h3>Books Favorited By You:</h3>
+            
+            {% for book in user.liked_books.all %}
+            <div class="list-row-item">
+                <h4><a href="/books/{{ book.id }}">{{ book.title }}</a></h4>
+                <p style="font-size: 14px; color: var(--text-main); margin: 6px 0 12px 0; line-height: 1.5;">{{ book.description|truncatewords:20 }}</p>
+                <a href="/books/{{ book.id }}/favorite/remove" style="font-size: 13px; color: var(--accent-red); text-decoration: none; font-weight: 600;">Disclaim Favorite</a>
+            </div>
+            {% empty %}
+            <p class="meta-info-text" style="text-align: center; padding: 25px 0;">Your customized list dashboard contains no records yet.</p>
+            {% endfor %}
+        </div>
+    </div>
+
+</body>
+</html>

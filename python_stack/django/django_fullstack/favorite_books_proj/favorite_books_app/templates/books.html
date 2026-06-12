@@ -1,0 +1,70 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Favorite Books Workspace</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/books.css' %}?v=1.0">
+</head>
+<body>
+
+    <div class="navbar">
+        <h2>Welcome, {{ user.first_name }}!</h2>
+        <div class="navbar-links">
+            <a href="/favorites">My Favorites Studio</a>
+            <a href="/logout" style="color: var(--accent-red);">Log Out</a>
+        </div>
+    </div>
+
+    <div class="main-layout-grid">
+        <div class="column-card left-panel">
+            <h3>Add a Favorite Book</h3>
+            
+            {% if messages %}
+            <div class="system-messages-container">
+                {% for message in messages %}
+                <div class="msg-banner {{ message.tags }}">{{ message }}</div>
+                {% endfor %}
+            </div>
+            {% endif %}
+
+            <form action="/books/add" method="POST">
+                {% csrf_token %}
+                <div class="input-control-block">
+                    <label for="bookTitle">Book Title</label>
+                    <input type="text" id="bookTitle" name="title">
+                </div>
+                <div class="input-control-block">
+                    <label for="bookDescription">Description</label>
+                    <textarea id="bookDescription" name="description" rows="4"></textarea>
+                </div>
+                <button type="submit" class="base-btn">Add Book</button>
+            </form>
+        </div>
+
+        <div class="column-card right-panel">
+            <h3>All Distributed Books</h3>
+            {% for book in all_books %}
+            <div class="list-row-item">
+                <h4><a href="/books/{{ book.id }}">{{ book.title }}</a></h4>
+                <p class="meta-info-text">Uploaded by: {{ book.uploaded_by.first_name }} {{ book.uploaded_by.last_name }}</p>
+                
+                {% if user in book.users_who_like.all %}
+                    <span class="favorite-badge-status">⭐ Favorited by you</span>
+                    <a href="/books/{{ book.id }}/favorite/remove" style="font-size: 13px; color: var(--accent-red); margin-left: 12px; text-decoration: none;">Remove Favorite</a>
+                {% else %}
+                    <a href="/books/{{ book.id }}/favorite/add" style="font-size: 13px; color: var(--brand-primary); text-decoration: none; font-weight: 500;">✨ Add to Favorites</a>
+                {% endif %}
+            </div>
+            {% empty %}
+            <p class="meta-info-text">The central directory is currently empty.</p>
+            {% endfor %}
+        </div>
+    </div>
+
+</body>
+</html>

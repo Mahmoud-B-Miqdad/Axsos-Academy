@@ -1,0 +1,77 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Profile View</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/books.css' %}?v=1.0">
+</head>
+<body>
+
+    <div class="navbar">
+        <h2>Metadata File Control Room</h2>
+        <div class="navbar-links">
+            <a href="/books">⬅ Back to Central Dashboard</a>
+        </div>
+    </div>
+
+    <div class="main-layout-grid">
+        <div class="column-card left-panel">
+            {% if messages %}
+            <div class="system-messages-container">
+                {% for message in messages %}
+                <div class="msg-banner {{ message.tags }}">{{ message }}</div>
+                {% endfor %}
+            </div>
+            {% endif %}
+
+            {% if book.uploaded_by.id == user.id %}
+                <h3>Edit Book Specification</h3>
+                <form action="/books/{{ book.id }}/update" method="POST">
+                    {% csrf_token %}
+                    <div class="input-control-block">
+                        <label for="editTitle">Book Title</label>
+                        <input type="text" id="editTitle" name="title" value="{{ book.title }}">
+                    </div>
+                    <p class="meta-info-text" style="margin-top: -10px; margin-bottom: 15px;">Uploaded by: You</p>
+                    <div class="input-control-block">
+                        <label for="editDesc">Description Description</label>
+                        <textarea id="editDesc" name="description" rows="5">{{ book.description }}</textarea>
+                    </div>
+                    <button type="submit" class="base-btn">Update Book Details</button>
+                    <a href="/books/{{ book.id }}/delete" class="base-btn destructive-btn" style="text-decoration: none; display: inline-block; margin-left: 10px;" onclick="return confirm('Remove this database record entirely?')">Remove Book</a>
+                </form>
+            {% else %}
+                <h2 style="color: var(--brand-primary); margin-bottom: 5px;">{{ book.title }}</h2>
+                <p class="meta-info-text" style="margin-bottom: 25px;">Uploaded by: {{ book.uploaded_by.first_name }} {{ book.uploaded_by.last_name }}</p>
+                <h3 style="font-size: 16px; margin-bottom: 8px;">Detailed Overview</h3>
+                <p style="line-height: 1.6; font-size: 15px;">{{ book.description }}</p>
+            {% endif %}
+        </div>
+
+        <div class="column-card right-panel">
+            <h3>Registered Fans Dynamic List</h3>
+            <ul style="padding-left: 20px; line-height: 2;">
+                {% for enthusiast in book.users_who_like.all %}
+                    <li><strong>{{ enthusiast.first_name }} {{ enthusiast.last_name }}</strong></li>
+                {% endfor %}
+            </ul>
+
+            <div style="margin-top: 35px; border-top: 1px solid var(--border-line); padding-top: 22px;">
+                {% if is_favorited %}
+                    <p class="meta-info-text">This item occupies a space inside your favorites layout grid.</p>
+                    <a href="/books/{{ book.id }}/favorite/remove" class="base-btn destructive-btn" style="text-decoration: none; display: inline-block;">Drop from Favorites</a>
+                {% else %}
+                    <p class="meta-info-text">Would you like to preserve this item inside your records list?</p>
+                    <a href="/books/{{ book.id }}/favorite/add" class="base-btn" style="text-decoration: none; display: inline-block; background-color: var(--accent-emerald);">Add to Favorites</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
