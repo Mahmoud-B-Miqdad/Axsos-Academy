@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-_8a1uax7!jbarm((p@!wr-t&n1!d+^jmmxt7-%pb#+&bm+hls5
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['the-wall-app.onrender.com', 'localhost', '127.0.0.1']
 
 
 # Application definition
